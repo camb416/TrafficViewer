@@ -25,7 +25,7 @@ void TrafficCamView::load(){
 }
 void TrafficCamView::draw(){
     gl::pushMatrices();
-    gl::translate(x, y);
+    gl::translate(pos.x, pos.y,pos.z);
     gl::drawSolidCircle(vec2(0,0),2,0);
     gl::translate(5,-5); // skootch text over
     gl::draw(nameTex,Rectf(0,0,nameTex->getWidth()/2,nameTex->getHeight()/2));

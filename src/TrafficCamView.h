@@ -15,20 +15,25 @@ class TrafficCamView{
 private:
     TrafficCamModel model;
     Surface surface;
-    float x,y;
+    vec3 pos,dpos;
     float w,h;
     gl::Texture2dRef nameTex;
     
 public:
     TrafficCamView(TrafficCamModel _model){
         model = _model;
-        x = y = 0.0f;
+        
+        pos =  vec3(0); // position
+        dpos = vec3(0); // destination position
+        
         w = h = 20.0f;
     }
-    void setPos(vec2 _pos){
-        x = _pos.x;
-        y = _pos.y;
+    void setPos(vec3 _pos){
+        dpos = _pos;
     };
+    void update(){
+        pos += (dpos-pos)/4.0f;
+    }
     ~TrafficCamView(){
         // empty destructor
     }

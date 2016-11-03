@@ -3,6 +3,11 @@
 #include "cinder/gl/gl.h"
 #include "cinder/Json.h"
 #include <unistd.h>
+#include "glm/gtc/random.hpp"
+#include "cinder/CameraUi.h"
+#include "cinder/params/Params.h"
+
+
 #include "TrafficCamModel.h"
 #include "TrafficCamView.h"
 
@@ -10,7 +15,6 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-static const bool PREMULT = false;
 
 class TrafficViewerApp : public App {
   public:
@@ -19,16 +23,34 @@ class TrafficViewerApp : public App {
 	void mouseDown( MouseEvent event ) override;
 	void update() override;
 	void draw() override;
+    void keyDown( KeyEvent event ) override;
     
    static void prepare( Settings *settings );
     
     void parseCamerasFile( const string &filename );
     void loadViews();
+    void updateCameraViews();
     void drawCameraViews();
+    void randomizeLocs();
 
     gl::Texture2dRef myTex, mSimpleTexture;
     vector<TrafficCamModel> trafficCamModels;
     vector<TrafficCamView> trafficCamViews;
+    
+    CameraPersp					mObjectCam;
+    CameraPersp					mViewCam;
+    CameraPersp					mViewCamInit;
+    CameraUi					mCamUi;
+    
+    // params for the main camera
+    params::InterfaceGlRef		mParams;
+    vec3						mEyePoint;
+    vec3						mLookAt;
+    float						mFov;
+    float						mAspectRatio;
+    float						mNearPlane;
+    float						mFarPlane;
+    vec2						mLensShift;
     
 };
 
@@ -94,14 +116,18 @@ void TrafficViewerApp::mouseDown( MouseEvent event )
 
 void TrafficViewerApp::update()
 {
+    updateCameraViews();
 }
 
 void TrafficViewerApp::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) );
+    gl::enableDepthRead();
+    gl::enableDepthWrite();
     gl::draw(myTex);
     drawCameraViews();
-    
+    gl::disableDepthRead();
+    gl::disableDepthWrite();
     gl::draw(mSimpleTexture);
 }
 void TrafficViewerApp::loadViews(){
@@ -116,6 +142,41 @@ void TrafficViewerApp::drawCameraViews(){
     for( auto &thisView : trafficCamViews){
 
         thisView.draw();
+    }
+}
+void TrafficViewerApp::updateCameraViews(){
+    
+    for( auto &thisView : trafficCamViews){
+        
+        thisView.update();
+    }
+}
+
+void TrafficViewerApp::keyDown( KeyEvent event )
+{
+    if( event.getChar() == 'f' ) {
+        // Toggle full screen when the user presses the 'f' key.
+        setFullScreen( ! isFullScreen() );
+    }
+    else if( event.getCode() == KeyEvent::KEY_SPACE ) {
+        // Clear the list of points when the user presses the space bar.
+        randomizeLocs();
+    }
+    else if( event.getCode() == KeyEvent::KEY_ESCAPE ) {
+        // Exit full screen, or quit the application, when the user presses the ESC key.
+        if( isFullScreen() )
+            setFullScreen( false );
+        else
+            quit();
+    }
+}
+
+void TrafficViewerApp::randomizeLocs(){
+    vec2 winc = getWindowCenter();
+    for( auto &thisView : trafficCamViews){
+        
+        thisView.setPos(vec3(winc.x,winc.y,0) + glm::ballRand(100.0f));
+        
     }
 }
 
@@ -145,7 +206,7 @@ void TrafficViewerApp::parseCamerasFile(const string &filename){
             
             float outLat = lmap(lat,highLat,lowLat,10.0f,(float)win.y-10.0f);
             float outLng = lmap(lng,lowLng,highLng,10.0f,(float)win.x-10.0f);
-            tcv.setPos(vec2(outLng,outLat));
+            tcv.setPos(vec3(outLng,outLat,glm::linearRand(-5.0f,5.0f)));
             trafficCamViews.push_back(tcv);
             
         }
