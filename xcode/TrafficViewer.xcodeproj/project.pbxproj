@@ -16,12 +16,12 @@
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
 		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
+		14846082E2E14D42B6E1A360 /* TrafficViewerApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7B210C8F8B8844CF95853397 /* TrafficViewerApp.cpp */; };
+		251DC3D01DCAE0F600EFA055 /* TrafficCamView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 251DC3CE1DCAE0F600EFA055 /* TrafficCamView.cpp */; };
+		25A1351A1DCA9A7500E794CF /* TrafficCamModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A135191DCA9A7500E794CF /* TrafficCamModel.cpp */; };
+		3A1BA65349C8487CB03378F2 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9EF10A3CCDA84688B3CEC368 /* CinderApp.icns */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		52A1B5356CF4420380E1DEC4 /* TrafficViewer_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 52733B37D7BA4DBFA718E703 /* TrafficViewer_Prefix.pch */; };
-		3A1BA65349C8487CB03378F2 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9EF10A3CCDA84688B3CEC368 /* CinderApp.icns */; };
-		2F027DEF2D0543D6AF0F6C48 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C2DAF38E3A642098D6B13A6 /* Resources.h */; };
-		14846082E2E14D42B6E1A360 /* TrafficViewerApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7B210C8F8B8844CF95853397 /* TrafficViewerApp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,15 +35,19 @@
 		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		251DC3CE1DCAE0F600EFA055 /* TrafficCamView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TrafficCamView.cpp; path = ../src/TrafficCamView.cpp; sourceTree = "<group>"; };
+		251DC3CF1DCAE0F600EFA055 /* TrafficCamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrafficCamView.h; path = ../src/TrafficCamView.h; sourceTree = "<group>"; };
+		25A135191DCA9A7500E794CF /* TrafficCamModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TrafficCamModel.cpp; path = ../src/TrafficCamModel.cpp; sourceTree = "<group>"; };
+		25A1351B1DCA9BC500E794CF /* TrafficCamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TrafficCamModel.h; path = ../include/TrafficCamModel.h; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		52733B37D7BA4DBFA718E703 /* TrafficViewer_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = TrafficViewer_Prefix.pch; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		7B210C8F8B8844CF95853397 /* TrafficViewerApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = TrafficViewerApp.cpp; path = ../src/TrafficViewerApp.cpp; sourceTree = "<group>"; };
+		8C2DAF38E3A642098D6B13A6 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* TrafficViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrafficViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B210C8F8B8844CF95853397 /* TrafficViewerApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/TrafficViewerApp.cpp; sourceTree = "<group>"; name = TrafficViewerApp.cpp; };
-		8C2DAF38E3A642098D6B13A6 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
-		9EF10A3CCDA84688B3CEC368 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
-		A9A87877017D4C3F840DDAB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
-		52733B37D7BA4DBFA718E703 /* TrafficViewer_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = TrafficViewer_Prefix.pch; sourceTree = "<group>"; name = TrafficViewer_Prefix.pch; };
+		9EF10A3CCDA84688B3CEC368 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		A9A87877017D4C3F840DDAB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				7B210C8F8B8844CF95853397 /* TrafficViewerApp.cpp */,
+				25A135191DCA9A7500E794CF /* TrafficCamModel.cpp */,
+				251DC3CE1DCAE0F600EFA055 /* TrafficCamView.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -124,18 +137,13 @@
 			name = TrafficViewer;
 			sourceTree = "<group>";
 		};
-		01B97315FEAEA392516A2CEA /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Blocks;
-			sourceTree = "<group>";
-		};
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				8C2DAF38E3A642098D6B13A6 /* Resources.h */,
 				52733B37D7BA4DBFA718E703 /* TrafficViewer_Prefix.pch */,
+				25A1351B1DCA9BC500E794CF /* TrafficCamModel.h */,
+				251DC3CF1DCAE0F600EFA055 /* TrafficCamView.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -184,6 +192,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TrafficViewer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -220,6 +230,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				14846082E2E14D42B6E1A360 /* TrafficViewerApp.cpp in Sources */,
+				25A1351A1DCA9A7500E794CF /* TrafficCamModel.cpp in Sources */,
+				251DC3D01DCAE0F600EFA055 /* TrafficCamView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,17 +242,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TrafficViewer_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TrafficViewer_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -262,12 +274,12 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TrafficViewer_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NDEBUG=1",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TrafficViewer_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -284,7 +296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CINDER_PATH = "../../../cinder_master";
+				CINDER_PATH = ../../../cinder_master;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				ENABLE_TESTABILITY = YES;
@@ -302,7 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CINDER_PATH = "../../../cinder_master";
+				CINDER_PATH = ../../../cinder_master;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
