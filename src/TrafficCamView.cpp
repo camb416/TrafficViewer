@@ -26,8 +26,22 @@ void TrafficCamView::load(){
 void TrafficCamView::draw(){
     gl::pushMatrices();
     gl::translate(pos.x, pos.y,pos.z);
-    gl::drawSolidCircle(vec2(0,0),2,0);
-    gl::translate(5,-5); // skootch text over
-    gl::draw(nameTex,Rectf(0,0,nameTex->getWidth()/2,nameTex->getHeight()/2));
+    
+
+    if(isSelected){
+        gl::color(1,0,0);
+
+    } else {
+        gl::color(1,1,1);
+
+    }
+    
+    
+    
+    gl::drawSolidCircle(vec2(0,0),r,0);
+    if(isSelected){
+    gl::translate(24,-5); // skootch text over
+    gl::draw(nameTex,Rectf(0,0,nameTex->getWidth()/1.5f,nameTex->getHeight()/1.5f));
+    }
     gl::popMatrices();
 }

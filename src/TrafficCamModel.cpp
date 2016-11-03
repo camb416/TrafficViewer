@@ -21,6 +21,7 @@ TrafficCamModel::TrafficCamModel(string _name,
     name = _name;
     url = _url;
     pos = vec2(_lat,_lng);
+    isSelected = false;
     
 }
 TrafficCamModel::~TrafficCamModel(){

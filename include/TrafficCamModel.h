@@ -18,6 +18,7 @@ private:
     string name;
     string url;
     vec2 pos;
+    bool isSelected;
 public:
     TrafficCamModel(){};
     TrafficCamModel(string _name,

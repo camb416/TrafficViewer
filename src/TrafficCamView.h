@@ -18,6 +18,9 @@ private:
     vec3 pos,dpos;
     float w,h;
     gl::Texture2dRef nameTex;
+    bool isSelected;
+    float r;
+    float dr;
     
 public:
     TrafficCamView(TrafficCamModel _model){
@@ -27,12 +30,29 @@ public:
         dpos = vec3(0); // destination position
         
         w = h = 20.0f;
+        r = dr = 0;
+        
     }
     void setPos(vec3 _pos){
         dpos = _pos;
     };
-    void update(){
+    vec2 getPos(){
+        return vec2(pos);
+    }
+    string getUrl(){
+      
+            return model.getUrl();
+       
+    }
+    void update(bool _isSelected){
+        isSelected = _isSelected;
         pos += (dpos-pos)/4.0f;
+        if(isSelected){
+            dr = r = 15.0f;
+        } else {
+            dr = 2.0f;
+        }
+        r += (dr-r)/16.0f;
     }
     ~TrafficCamView(){
         // empty destructor

@@ -4,6 +4,7 @@
 #include "cinder/Json.h"
 #include <unistd.h>
 #include "glm/gtc/random.hpp"
+#include "cinder/Rand.h"
 #include "cinder/CameraUi.h"
 #include "cinder/params/Params.h"
 
@@ -32,25 +33,16 @@ class TrafficViewerApp : public App {
     void updateCameraViews();
     void drawCameraViews();
     void randomizeLocs();
+    
+    int getNearestViewId();
+    
+    int activeCamId;
 
     gl::Texture2dRef myTex, mSimpleTexture;
     vector<TrafficCamModel> trafficCamModels;
     vector<TrafficCamView> trafficCamViews;
     
-    CameraPersp					mObjectCam;
-    CameraPersp					mViewCam;
-    CameraPersp					mViewCamInit;
-    CameraUi					mCamUi;
-    
-    // params for the main camera
-    params::InterfaceGlRef		mParams;
-    vec3						mEyePoint;
-    vec3						mLookAt;
-    float						mFov;
-    float						mAspectRatio;
-    float						mNearPlane;
-    float						mFarPlane;
-    vec2						mLensShift;
+   
     
 };
 
@@ -92,9 +84,7 @@ void TrafficViewerApp::setup()
     
     console() << "textfile.txt lives at: " << getAssetPath( "textfile.txt" ) << std::endl;
     
-    string myUrl = "http://207.251.86.238/cctv884.jpg";
-    auto img = loadImage(loadUrl(myUrl));
-    myTex = gl::Texture2d::create(img);
+
     
     // Load the latest earthquake information.
     // parseEarthquakes( "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson" );
@@ -104,14 +94,22 @@ void TrafficViewerApp::setup()
     
     loadViews();
     
+    activeCamId = -1;
     
     
+//    gl::enableBlending();
+//    gl::enableDepth();
 
     
 }
 
 void TrafficViewerApp::mouseDown( MouseEvent event )
 {
+   // load camera
+    string myUrl = trafficCamViews.at(activeCamId).getUrl();
+    console() << myUrl << endl;
+    auto img = loadImage(loadUrl(myUrl));
+    myTex = gl::Texture2d::create(img);
 }
 
 void TrafficViewerApp::update()
@@ -122,12 +120,12 @@ void TrafficViewerApp::update()
 void TrafficViewerApp::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) );
-    gl::enableDepthRead();
-    gl::enableDepthWrite();
+//    gl::enableDepthRead();
+//    gl::enableDepthWrite();
     gl::draw(myTex);
     drawCameraViews();
-    gl::disableDepthRead();
-    gl::disableDepthWrite();
+//    gl::disableDepthRead();
+//    gl::disableDepthWrite();
     gl::draw(mSimpleTexture);
 }
 void TrafficViewerApp::loadViews(){
@@ -146,9 +144,11 @@ void TrafficViewerApp::drawCameraViews(){
 }
 void TrafficViewerApp::updateCameraViews(){
     
-    for( auto &thisView : trafficCamViews){
-        
-        thisView.update();
+    activeCamId = getNearestViewId();
+    
+    for(int i=0;i<trafficCamViews.size();i++){
+        TrafficCamView * thisView = &trafficCamViews.at(i);
+        thisView->update(i == activeCamId);
     }
 }
 
@@ -173,12 +173,14 @@ void TrafficViewerApp::keyDown( KeyEvent event )
 
 void TrafficViewerApp::randomizeLocs(){
     vec2 winc = getWindowCenter();
+    vec2 rv2;
     for( auto &thisView : trafficCamViews){
-        
-        thisView.setPos(vec3(winc.x,winc.y,0) + glm::ballRand(100.0f));
+        rv2  = randVec2() * 100.0f * randFloat();
+        thisView.setPos(vec3(winc.x+rv2.x,winc.y+rv2.y,0));
         
     }
 }
+
 
 void TrafficViewerApp::parseCamerasFile(const string &filename){
     try {
@@ -206,7 +208,7 @@ void TrafficViewerApp::parseCamerasFile(const string &filename){
             
             float outLat = lmap(lat,highLat,lowLat,10.0f,(float)win.y-10.0f);
             float outLng = lmap(lng,lowLng,highLng,10.0f,(float)win.x-10.0f);
-            tcv.setPos(vec3(outLng,outLat,glm::linearRand(-5.0f,5.0f)));
+            tcv.setPos(vec3(outLng,outLat,0.0f));
             trafficCamViews.push_back(tcv);
             
         }
@@ -215,6 +217,22 @@ void TrafficViewerApp::parseCamerasFile(const string &filename){
         console() << "Failed to parse json, what: " << exc.what() << std::endl;
     }
     
+}
+int TrafficViewerApp::getNearestViewId(){
+    float smallestDist = 9999.9f;
+    float nearestId = -1;
+    vec2  mousePos = cinder::app::App::getMousePos();
+    
+    for(int i=0; i<trafficCamViews.size(); i++){
+        TrafficCamView * thisViewPtr = &trafficCamViews.at(i);
+        float thisDist = distance(thisViewPtr->getPos(), mousePos);
+        if(thisDist<smallestDist){
+            smallestDist = thisDist;
+            nearestId = i;
+        }
+    }
+    return nearestId;
+
 }
 
 CINDER_APP( TrafficViewerApp, RendererGl, TrafficViewerApp::prepare )
