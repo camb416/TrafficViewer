@@ -22,6 +22,7 @@ class TrafficViewerApp : public App {
    
 	void setup() override;
 	void mouseDown( MouseEvent event ) override;
+    void mouseMove( MouseEvent event ) override;
 	void update() override;
 	void draw() override;
     void keyDown( KeyEvent event ) override;
@@ -41,6 +42,8 @@ class TrafficViewerApp : public App {
     gl::Texture2dRef myTex, mSimpleTexture;
     vector<TrafficCamModel> trafficCamModels;
     vector<TrafficCamView> trafficCamViews;
+    
+    vec2 mousePos;
     
    
     
@@ -101,6 +104,10 @@ void TrafficViewerApp::setup()
 //    gl::enableDepth();
 
     
+}
+
+void TrafficViewerApp::mouseMove( MouseEvent event ){
+    mousePos = event.getPos();
 }
 
 void TrafficViewerApp::mouseDown( MouseEvent event )
@@ -221,7 +228,7 @@ void TrafficViewerApp::parseCamerasFile(const string &filename){
 int TrafficViewerApp::getNearestViewId(){
     float smallestDist = 9999.9f;
     float nearestId = -1;
-    vec2  mousePos = cinder::app::App::getMousePos();
+    
     
     for(int i=0; i<trafficCamViews.size(); i++){
         TrafficCamView * thisViewPtr = &trafficCamViews.at(i);
@@ -235,4 +242,4 @@ int TrafficViewerApp::getNearestViewId(){
 
 }
 
-CINDER_APP( TrafficViewerApp, RendererGl, TrafficViewerApp::prepare )
+CINDER_APP( TrafficViewerApp, RendererGl( RendererGl::Options().msaa( 4 ) ), TrafficViewerApp::prepare )
