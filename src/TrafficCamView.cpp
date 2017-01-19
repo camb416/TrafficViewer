@@ -13,7 +13,7 @@
 using namespace cinder::app;
 
 void TrafficCamView::load(){
-    console() << model.getUrl();
+    console() << model.getUrl() << "\n";
     // text stuff
     std::string normalFont( "Arial" );
     TextLayout simple;

@@ -133,6 +133,7 @@ void TrafficViewerApp::draw()
     drawCameraViews();
 //    gl::disableDepthRead();
 //    gl::disableDepthWrite();
+    gl::color(1,1,1);
     gl::draw(mSimpleTexture);
 }
 void TrafficViewerApp::loadViews(){
@@ -144,10 +145,13 @@ void TrafficViewerApp::loadViews(){
 }
 void TrafficViewerApp::drawCameraViews(){
     
-    for( auto &thisView : trafficCamViews){
-
-        thisView.draw();
+    activeCamId = getNearestViewId();
+    
+    for(int i=0;i<trafficCamViews.size();i++){
+        TrafficCamView * thisView = &trafficCamViews.at(i);
+        if(i != activeCamId) thisView->draw();
     }
+    trafficCamViews.at(activeCamId).draw(); // draw the active cam last
 }
 void TrafficViewerApp::updateCameraViews(){
     
